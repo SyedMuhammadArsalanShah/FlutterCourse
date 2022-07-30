@@ -14,10 +14,7 @@ void main() {
 //   @override
 //   Widget build(BuildContext context) {
 //     return MaterialApp(
-
-//       home: Scaffold(body: Text("Maryam khan ")
-
-//       ),
+//       home: Scaffold(body: Text("Maryam khan ")),
 //     );
 //   }
 // }
@@ -51,12 +48,10 @@ void main() {
 //   Widget build(BuildContext context) {
 //     return MaterialApp(
 //       home: Scaffold(
-//         body: Column(
-
-//           children: [
+//         body: Column(children: [
 //           Text("maryam"),
 //           SizedBox(
-//             height: 30,
+//             height: 60,
 //           ),
 //           Text("Daniyal"),
 //           SizedBox(
@@ -93,6 +88,39 @@ void main() {
 // }
 
 //login page
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Center(child: Text("Login Page")),
+//         ),
+//         body: Center(
+//           child: Column(children: [
+//             SizedBox(height: 50),
+//             Container(
+//               width: 200,
+//               child: TextField(),
+//             ),
+//             Container(
+//               width: 200,
+//               child: TextField(),
+//             ),
+//             SizedBox(
+//               height: 30,
+//             ),
+//             ElevatedButton(onPressed: () {}, child: Text("login"))
+//           ]),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -100,25 +128,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.teal,
         appBar: AppBar(
-          title: Center(child: Text("Login Page")),
+          title: Text(
+            "margin concept ",
+            style: TextStyle(color: Colors.teal),
+          ),
+          backgroundColor: Colors.white,
         ),
         body: Center(
-          child: Column(children: [
-            SizedBox(height: 50),
-            Container(
-              width: 200,
-              child: TextField(),
+          child: Container(
+            child: Text(
+              "Welcome my class",
+              style: TextStyle(color: Colors.teal),
             ),
-            Container(
-              width: 200,
-              child: TextField(),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(onPressed: () {}, child: Text("login"))
-          ]),
+            width: 300,
+            height: 100,
+            margin: EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
+            color: Color(0xff0a0101),
+          ),
         ),
       ),
     );
