@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:ui';
+// import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:lecture02_widgets_for_user_interface/app.dart';
 import 'package:lecture02_widgets_for_user_interface/forget.dart';
 import 'package:lecture02_widgets_for_user_interface/login.dart';
 import 'package:lecture02_widgets_for_user_interface/register.dart';
+//for ajeeb sa calculator
+import 'package:math_expressions/math_expressions.dart';
 
 //text color attributes
 // class Home extends StatefulWidget {
@@ -434,6 +436,184 @@ import 'package:lecture02_widgets_for_user_interface/register.dart';
 //   }
 // }
 
+// class Home extends StatefulWidget {
+//   const Home({Key? key}) : super(key: key);
+
+//   @override
+//   State<Home> createState() => _HomeState();
+// }
+
+// class _HomeState extends State<Home> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return DefaultTabController(
+//         length: 3,
+//         child: Scaffold(
+//           appBar: AppBar(
+//               backgroundColor: Colors.teal,
+//               title: Text("whatsapp"),
+//               bottom: TabBar(
+//                 unselectedLabelColor: Colors.lightGreen,
+//                 labelColor: Colors.white,
+//                 indicatorColor: Colors.white,
+//                 tabs: [
+//                   Tab(
+//                     child: Text("Chats"),
+//                   ),
+//                   Tab(
+//                     child: Text("Status"),
+//                   ),
+//                   Tab(
+//                     child: Text("Calls"),
+//                   ),
+//                 ],
+//               )),
+//           body: TabBarView(children: [Login(), Register(), Forget()]),
+//         ));
+//   }
+// }
+
+// state managment
+
+// class Home extends StatefulWidget {
+//   const Home({Key? key}) : super(key: key);
+
+//   @override
+//   State<Home> createState() => _HomeState();
+// }
+
+// class _HomeState extends State<Home> {
+//   var value = 0;
+
+//   one() {
+//     setState(() {
+//       value += 1;
+//     });
+//   }
+
+//   two() {
+//     setState(() {
+//       value += 2;
+//     });
+//   }
+
+//   three() {
+//     setState(() {
+//       value = value + 3;
+//       // value +=3;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//       child: Column(
+//         children: [
+//           Text("Text $value"),
+//           ElevatedButton(onPressed: one, child: Text("text 1")),
+//           ElevatedButton(onPressed: two, child: Text("text 2")),
+//           ElevatedButton(onPressed: three, child: Text("text 3")),
+//         ],
+//       ),
+//     ));
+//   }
+// }
+
+// class Home extends StatefulWidget {
+//   const Home({Key? key}) : super(key: key);
+
+//   @override
+//   State<Home> createState() => _HomeState();
+// }
+
+// class _HomeState extends State<Home> {
+//   var result = "";
+
+//   Widget btn(var textt) {
+//     return ElevatedButton(
+//         onPressed: () {
+//           setState(() {
+//             result += textt;
+//             // result = result + textt;
+//           });
+//         },
+//         child: Text(textt));
+//   }
+
+//   clearkardo() {
+//     setState(() {
+//       result = "";
+//     });
+//   }
+
+//   equalkardo() {
+//     Parser p = Parser();
+//     Expression exp = p.parse(result);
+//     ContextModel cm = ContextModel();
+//     double eval = exp.evaluate(EvaluationType.REAL, cm);
+
+//     setState(() {
+//       result = eval.toString();
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(title: Text("Ajeeb Sa Calculator")),
+//         body: Center(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Text(
+//                 result,
+//                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+//               ),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                 children: [
+//                   btn("1"),
+//                   btn("2"),
+//                   btn("3"),
+//                   btn("4"),
+//                 ],
+//               ),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                 children: [
+//                   btn("5"),
+//                   btn("6"),
+//                   btn("7"),
+//                   btn("8"),
+//                 ],
+//               ),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                 children: [
+//                   btn("9"),
+//                   btn("0"),
+//                   ElevatedButton(onPressed: clearkardo, child: Text("C")),
+//                   ElevatedButton(onPressed: equalkardo, child: Text("=")),
+//                 ],
+//               ),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                 children: [
+//                   btn("+"),
+//                   btn("-"),
+//                   btn("/"),
+//                   btn("*"),
+//                 ],
+//               )
+//             ],
+//           ),
+//         ));
+//   }
+// }
+
+// Todo App
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -442,31 +622,96 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<dynamic> students = [1, 2, 3];
+  var output = "";
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-              backgroundColor: Colors.teal,
-              title: Text("whatsapp"),
-              bottom: TabBar(
-                unselectedLabelColor: Colors.lightGreen,
-                labelColor: Colors.white,
-                indicatorColor: Colors.white,
-                tabs: [
-                  Tab(
-                    child: Text("Chats"),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Ajeeb Ghareeb Dastaan"),
+          backgroundColor: Colors.teal,
+        ),
+        body: ListView.builder(
+          itemCount: students.length,
+          itemBuilder: (context, index) {
+            return Container(
+              color: Colors.blue,
+              margin: EdgeInsets.all(20),
+              child: ListTile(
+                title: Text(
+                  "${students[index]}",
+                  style: TextStyle(color: Colors.white),
+                ),
+                trailing: Container(
+                  width: 50,
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("Edit My Task "),
+                                    content: TextField(
+                                      onChanged: (value) {
+                                        output = value;
+                                      },
+                                    ),
+                                    actions: [
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              students.replaceRange(
+                                                  index, index + 1, {output});
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text("Update"))
+                                    ],
+                                  );
+                                });
+                          },
+                          child: Icon(Icons.edit)),
+                      GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              students.removeAt(index);
+                            });
+                          },
+                          child: Icon(Icons.delete)),
+                    ],
                   ),
-                  Tab(
-                    child: Text("Status"),
-                  ),
-                  Tab(
-                    child: Text("Calls"),
-                  ),
-                ],
-              )),
-          body: TabBarView(children: [Login(), Register(), Forget()]),
-        ));
+                ),
+              ),
+            );
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text("Add My task "),
+                      content: TextField(
+                        onChanged: (value) {
+                          output = value;
+                        },
+                      ),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                students.add(output);
+                              });
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("Add"))
+                      ],
+                    );
+                  });
+            },
+            child: Icon(Icons.add)));
   }
 }
