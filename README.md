@@ -44,7 +44,6 @@
         </ol>
     </li>
     <li>Lecture No 06
-
         <ol>
             <li>GridView Count</li>
             <li>GridView Builder</li>
@@ -87,6 +86,5 @@
             <li>Copywith</li>
             <li>UIfolder global</li>
         </ol>
-
     </li>
 </ol>
