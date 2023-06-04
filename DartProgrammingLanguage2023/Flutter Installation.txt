@@ -1,0 +1,19 @@
+Flutter Installation 
+
+1 . Download Flutter Zip Folder(https://docs.flutter.dev/get-started/install)
+
+2 Extract Flutter Zip Folder
+
+3 Environment Variable->path->(Flutter/bin)
+
+4 Download & Install Android Studio
+
+5 VSCode Download
+
+6 Install dart & flutter extensions
+
+7   To Accept Android Licenses
+    cmd => flutter doctor  --android-licenses
+
+8   To check installation 
+    cmd => flutter doctor 
