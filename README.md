@@ -3,7 +3,7 @@
 </h1>
 
 
-<ol type="I" >
+<ol type="A" >
     <li>Lecture No 01
         <ol type="a">
             <li>Text widget and Text Style</li>
