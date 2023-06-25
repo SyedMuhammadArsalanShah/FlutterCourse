@@ -13,7 +13,7 @@ class _SecondState extends State<Second> {
     return Scaffold(
       // *** wrap ***
       body: Wrap(
-        direction: Axis.vertical,
+        direction: Axis.horizontal,
         children: [
           Container(
             width: 100,
