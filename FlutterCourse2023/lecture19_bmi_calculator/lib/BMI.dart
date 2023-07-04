@@ -81,7 +81,7 @@ class _BMIState extends State<BMI> {
                           msg = "you are under weight";
                           bgcolor = Colors.red;
                         } else {
-                          msg = "you are healthy";
+                          msg = "you are healthy MashaAllah ";
                           bgcolor = Colors.green;
                         }
 
