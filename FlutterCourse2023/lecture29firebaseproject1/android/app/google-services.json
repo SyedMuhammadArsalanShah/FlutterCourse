@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "303205469466",
+    "project_id": "warisha-d2a66",
+    "storage_bucket": "warisha-d2a66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303205469466:android:250bef4090d754dc8b70a3",
+        "android_client_info": {
+          "package_name": "com.example.lecture29firebaseproject1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303205469466-jquhvsfdvdmg8kqm0cca0jrgjmpp7mdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByUIUXsHghhKFmhezqQa2-Dnerw7AQM3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303205469466-jquhvsfdvdmg8kqm0cca0jrgjmpp7mdd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
