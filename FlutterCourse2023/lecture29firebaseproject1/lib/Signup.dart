@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'Home.dart';
+
 
 import 'Login.dart';
 
@@ -80,7 +80,8 @@ class _SignupState extends State<Signup> {
               child: ElevatedButton(
                   onPressed: () async {
                     try {
-                      final credential = await FirebaseAuth.instance
+                      // final credential = 
+                      await FirebaseAuth.instance
                           .createUserWithEmailAndPassword(
                         email: emailuser.text,
                         password: passuser.text,

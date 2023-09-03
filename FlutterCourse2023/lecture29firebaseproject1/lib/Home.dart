@@ -13,6 +13,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(actions: [IconButton( onPressed: () async {
+                await FirebaseAuth.instance.signOut().then((value) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Login()));
+                });
+              }, icon: Icon(Icons.logout_outlined))],),
       body: Center(
           child: ElevatedButton(
               onPressed: () async {

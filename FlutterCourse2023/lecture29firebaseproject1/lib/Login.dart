@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:lecture29firebaseproject1/Phone.dart';
+import 'package:lecture29firebaseproject1/toastmsg.dart';
 import 'Home.dart';
 import 'Signup.dart';
 
@@ -79,7 +81,8 @@ class _LoginState extends State<Login> {
               child: ElevatedButton(
                   onPressed: () async {
                     try {
-                      final credential = await FirebaseAuth.instance
+                   
+                   await FirebaseAuth.instance
                           .signInWithEmailAndPassword(
                               email: logemail.text, password: logpass.text)
                           .then((value) {
@@ -91,20 +94,33 @@ class _LoginState extends State<Login> {
                       //     MaterialPageRoute(builder: (context) => Home()));
                     } on FirebaseAuthException catch (e) {
                       if (e.code == 'user-not-found') {
-                        toast("No user found for that email.");
+                        Toastmsg().toast("No user found for that email.");
                         print('No user found for that email.');
                       } else if (e.code == 'wrong-password') {
-                        toast('Wrong password provided for that user.');
+                        Toastmsg().toast('Wrong password provided for that user.');
                         print('Wrong password provided for that user.');
                       } else {
-                        toast("W-m my exeption");
+                        Toastmsg().toast("W-m my exeption");
                         print("W-m my exeption");
                       }
                     }
                     setState(() {});
                   },
                   child: Text('LOGIN')),
-            )
+            ),
+
+
+
+           ElevatedButton(onPressed: (){
+
+
+             Navigator.push(context,MaterialPageRoute(builder: (context) => Phone() ,));
+
+           }, child: Text("SignIn"))
+
+
+
+
           ],
         ),
       )),
@@ -112,13 +128,3 @@ class _LoginState extends State<Login> {
   }
 }
 
-void toast(msg) async {
-  Fluttertoast.showToast(
-      msg: msg,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.indigo,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}
