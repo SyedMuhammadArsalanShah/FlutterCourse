@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:lecture29firebaseproject1/Login.dart';
 import 'package:lecture29firebaseproject1/Toastmsg.dart';
@@ -12,6 +15,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  DatabaseReference dref = FirebaseDatabase.instance.ref("users");
+  final key = FirebaseAuth.instance.currentUser!.uid;
+
 // createData
 
   var titleController = TextEditingController();
@@ -47,21 +53,19 @@ class _HomeState extends State<Home> {
               ),
               ElevatedButton(
                   onPressed: () async {
-
-                    
-                            DatabaseReference dref =
-                        FirebaseDatabase.instance.ref("users");
-                           
-                         final key= FirebaseAuth.instance.currentUser!.uid;
-                         dref.child(key).child(DateTime.now().microsecondsSinceEpoch.toString()).set({
-                          "Title":titleController.text,
-                          "Description":descController.text,
-                          "Dateofpost": DateTime.now().toString()
-                         }).then((value) {Toastmsg().toast("Successfully Uploaded");})
-                         .onError((error, stackTrace) {Toastmsg().toast("${error}");});
-
-  
-                  
+                    final key = FirebaseAuth.instance.currentUser!.uid;
+                    dref
+                        .child(key)
+                        .child(DateTime.now().microsecondsSinceEpoch.toString())
+                        .set({
+                      "Title": titleController.text,
+                      "Description": descController.text,
+                      "Dateofpost": DateTime.now().toString()
+                    }).then((value) {
+                      Toastmsg().toast("Successfully Uploaded");
+                    }).onError((error, stackTrace) {
+                      Toastmsg().toast("${error}");
+                    });
 
                     Navigator.pop(context);
                   },
@@ -90,8 +94,7 @@ class _HomeState extends State<Home> {
           actions: [
             IconButton(
                 onPressed: () async {
-                  await FirebaseAuth.instance.signOut()
-                  .then((value) {
+                  await FirebaseAuth.instance.signOut().then((value) {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Login()));
                   });
@@ -99,10 +102,46 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.logout_outlined))
           ],
         ),
-        body: Center(
-          child: Container(
-            child: Text("Home Screen"),
-          ),
+        body: Column(
+          children: [
+            Expanded(
+                child: StreamBuilder(
+              stream: dref.child(key).onValue,
+              builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                } else {
+                  Map<dynamic, dynamic> map =
+                      snapshot.data!.snapshot.value as dynamic;
+                  List<dynamic> list = [];
+                  list = map.values.toList();
+
+                  return ListView.builder(
+                    itemCount: snapshot.data!.snapshot.children.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(list[index]['Title']),
+                        subtitle:
+                            Text(list[index]['Description']),
+                      );
+                    },
+                  );
+                }
+              },
+            )),
+            Expanded(
+              child: FirebaseAnimatedList(
+                query: dref.child(key),
+                itemBuilder: (context, snapshot, animation, index) {
+                  return ListTile(
+                    title: Text(snapshot.child('Title').value.toString()),
+                    subtitle:
+                        Text(snapshot.child('Description').value.toString()),
+                  );
+                },
+              ),
+            ),
+          ],
         ));
   }
 }
