@@ -126,6 +126,7 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 controller: searchCont,
+                
                 decoration: InputDecoration(
                   labelText: "Search By Title",
                   hintText: "Search Here"),
@@ -134,6 +135,9 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
+
+
+            
             Expanded(
               child: FirebaseAnimatedList(
                 query: dref.child(key),

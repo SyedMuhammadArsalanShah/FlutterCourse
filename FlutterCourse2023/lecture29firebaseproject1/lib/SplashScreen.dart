@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lecture29firebaseproject1/Home.dart';
+import 'package:lecture29firebaseproject1/HomeFirestore.dart';
 import 'package:lecture29firebaseproject1/Login.dart';
 
 
@@ -31,7 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
     if (user != null) {
       Timer(Duration(seconds: 5), (() {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => HomeFirestore()));
+            // context, MaterialPageRoute(builder: (context) => Home()));
       }));
     } else {
       Timer(Duration(seconds: 5), (() {

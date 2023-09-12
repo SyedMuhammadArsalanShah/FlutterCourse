@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lecture29firebaseproject1/HomeFirestore.dart';
 
 import 'package:lecture29firebaseproject1/Phone.dart';
 import 'package:lecture29firebaseproject1/toastmsg.dart';
@@ -87,7 +88,8 @@ class _LoginState extends State<Login> {
                               email: logemail.text, password: logpass.text)
                           .then((value) {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Home()));
+                            // MaterialPageRoute(builder: (context) => Home()));
+                            MaterialPageRoute(builder: (context) => HomeFirestore()));
                       });
 
                       // Navigator.push(context,
