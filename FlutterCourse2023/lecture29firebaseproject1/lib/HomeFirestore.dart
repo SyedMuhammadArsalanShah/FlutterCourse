@@ -151,7 +151,6 @@ class _HomeFirestoreState extends State<HomeFirestore> {
                     itemBuilder: (context, index) {
                       final data = snapshot.data!.docs[index];
                           // for null checkcorrect condition exception
-                    
                         return ListTile(
                           title: Text(data["Title"].toString()),
                           subtitle: Text(data['Description'].toString()),
@@ -181,7 +180,8 @@ class _HomeFirestoreState extends State<HomeFirestore> {
                                        jesy humne search ke liye title
                                        ko liye tha na snapshot main se
                                        warisha beta wesy hi hum ne id ko liya hai
-                                       or phir yeh id hum ne child ko pass karwadi and agr hum uper wali lety(int id =0) to us se hamesha humari value zero hi rehti */
+                                       or phir yeh id hum ne child ko pass karwadi and agr hum uper
+                                        wali lety(int id =0) to us se hamesha humari value zero hi rehti */
                                         final id = data['Id'].toString();
                                         // dref.child(key).child(id).remove();
 

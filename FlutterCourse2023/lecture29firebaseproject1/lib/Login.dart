@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lecture29firebaseproject1/HomeFirestore.dart';
+import 'package:lecture29firebaseproject1/ImageScreenDB.dart';
 
 import 'package:lecture29firebaseproject1/Phone.dart';
 import 'package:lecture29firebaseproject1/toastmsg.dart';
@@ -89,7 +90,8 @@ class _LoginState extends State<Login> {
                           .then((value) {
                         Navigator.push(context,
                             // MaterialPageRoute(builder: (context) => Home()));
-                            MaterialPageRoute(builder: (context) => HomeFirestore()));
+                            // MaterialPageRoute(builder: (context) => HomeFirestore()));
+                            MaterialPageRoute(builder: (context) => ImageScreenDB()));
                       });
 
                       // Navigator.push(context,
