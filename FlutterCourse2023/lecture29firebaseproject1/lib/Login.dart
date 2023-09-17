@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lecture29firebaseproject1/ForgotScreen.dart';
 import 'package:lecture29firebaseproject1/HomeFirestore.dart';
 import 'package:lecture29firebaseproject1/ImageScreenDB.dart';
 
@@ -83,15 +84,16 @@ class _LoginState extends State<Login> {
               child: ElevatedButton(
                   onPressed: () async {
                     try {
-                   
-                   await FirebaseAuth.instance
+                      await FirebaseAuth.instance
                           .signInWithEmailAndPassword(
                               email: logemail.text, password: logpass.text)
                           .then((value) {
-                        Navigator.push(context,
+                        Navigator.push(
+                            context,
                             // MaterialPageRoute(builder: (context) => Home()));
                             // MaterialPageRoute(builder: (context) => HomeFirestore()));
-                            MaterialPageRoute(builder: (context) => ImageScreenDB()));
+                            MaterialPageRoute(
+                                builder: (context) => ImageScreenDB()));
                       });
 
                       // Navigator.push(context,
@@ -101,7 +103,8 @@ class _LoginState extends State<Login> {
                         Toastmsg().toast("No user found for that email.");
                         print('No user found for that email.');
                       } else if (e.code == 'wrong-password') {
-                        Toastmsg().toast('Wrong password provided for that user.');
+                        Toastmsg()
+                            .toast('Wrong password provided for that user.');
                         print('Wrong password provided for that user.');
                       } else {
                         Toastmsg().toast("W-m my exeption");
@@ -112,23 +115,27 @@ class _LoginState extends State<Login> {
                   },
                   child: Text('LOGIN')),
             ),
-
-
-
-           ElevatedButton(onPressed: (){
-
-
-             Navigator.push(context,MaterialPageRoute(builder: (context) => Phone() ,));
-
-           }, child: Text("SignIn"))
-
-
-
-
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Phone(),
+                      ));
+                },
+                child: Text("SignIn")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ForgotScreen(),
+                      ));
+                },
+                child: Text("Forget Pass"))
           ],
         ),
       )),
     );
   }
 }
-
