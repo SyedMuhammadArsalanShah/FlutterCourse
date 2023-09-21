@@ -11,18 +11,21 @@ class FirstMapScreen extends StatefulWidget {
 }
 
 class _FirstMapScreenState extends State<FirstMapScreen> {
-  // google map controller instance
   Completer<GoogleMapController> completer = Completer();
-  // camera position
-  static final CameraPosition cameraPosition = CameraPosition(
-      target: LatLng(24.905270433473422, 67.07981653688664), zoom: 14);
 
-  List<Marker> markerpin = [];
-  final List<Marker> listmarker = const [
+  CameraPosition cameraPosition = CameraPosition(
+      target: LatLng(24.882408312153768, 67.06721822424507), zoom: 14.45);
+
+  List<Marker> markerspin = [];
+  final List<Marker> markerslist = const [
     Marker(
-        markerId: MarkerId("demoMapId"),
-        position: LatLng(24.905270433473422, 67.07981653688664),
-        infoWindow: InfoWindow(title: "My Location"))
+        markerId: MarkerId("wa910"),
+        position: LatLng(24.882408312153768, 67.06721822424507),
+        infoWindow: InfoWindow(title: "My  Fav Location ")),
+    Marker(
+        markerId: MarkerId("wa"),
+        position: LatLng(24.879350042154694, 67.07132740805048),
+        infoWindow: InfoWindow(title: "Masjid Location  "))
   ];
 
   @override
@@ -30,19 +33,28 @@ class _FirstMapScreenState extends State<FirstMapScreen> {
     // TODO: implement initState
     super.initState();
 
-    markerpin.addAll(listmarker);
+    markerspin.addAll(markerslist);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(" Google Camera"),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            GoogleMapController googleMapController = await completer.future;
+            googleMapController.animateCamera(CameraUpdate.newCameraPosition(
+                CameraPosition(
+                    target: LatLng(40.89118582196477, 29.37841964251205),
+                    zoom: 14.5)));
+
+            setState(() {});
+          },
+          child: Icon(Icons.add),
         ),
         body: GoogleMap(
           initialCameraPosition: cameraPosition,
-          mapType: MapType.satellite,
-          markers: Set.of(markerpin),
+          mapType: MapType.normal,
+          markers: Set.of(markerspin),
           onMapCreated: (GoogleMapController controller) {
             completer.complete(controller);
           },
