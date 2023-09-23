@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_geocoder/geocoder.dart';
 import 'package:geocoding/geocoding.dart';
 
-class Second extends StatefulWidget {
-  const Second({super.key});
+class SecondMapScreen extends StatefulWidget {
+  const SecondMapScreen({super.key});
 
   @override
-  State<Second> createState() => _SecondState();
+  State<SecondMapScreen> createState() => _SecondMapScreenState();
 }
 
-class _SecondState extends State<Second> {
+class _SecondMapScreenState extends State<SecondMapScreen> {
   var res = 'null';
   var res1 = 'null';
   @override
@@ -34,7 +34,6 @@ class _SecondState extends State<Second> {
                   //                 .findAddressesFromCoordinates(coordinates);
                   //             var second = addressescod.first;
                   //             print("add cod${second.featureName} : ${second.addressLine}");
-
                   List<Location> locations = await locationFromAddress(
                       "Alamgir Rd, Delhi Mercantile Society, Karachi, Karachi City, Sindh, Pakistan");
 

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:lecture30google_map_api/L02Animate.dart';
+import 'package:lecture30google_map_api/L03CurrentLocation.dart';
 
 class FirstMapScreen extends StatefulWidget {
   const FirstMapScreen({super.key});
@@ -17,7 +19,7 @@ class _FirstMapScreenState extends State<FirstMapScreen> {
       target: LatLng(24.882408312153768, 67.06721822424507), zoom: 14.45);
 
   List<Marker> markerspin = [];
-  final List<Marker> markerslist = const [
+  final List<Marker> markerslist = [
     Marker(
         markerId: MarkerId("wa910"),
         position: LatLng(24.882408312153768, 67.06721822424507),
@@ -41,23 +43,36 @@ class _FirstMapScreenState extends State<FirstMapScreen> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            GoogleMapController googleMapController = await completer.future;
-            googleMapController.animateCamera(CameraUpdate.newCameraPosition(
-                CameraPosition(
-                    target: LatLng(40.89118582196477, 29.37841964251205),
-                    zoom: 14.5)));
-
+            // object pass
+            L02Animate().animatecam(
+                completer, const LatLng(40.89118582196477, 29.37841964251205));
             setState(() {});
           },
           child: Icon(Icons.add),
         ),
-        body: GoogleMap(
-          initialCameraPosition: cameraPosition,
-          mapType: MapType.normal,
-          markers: Set.of(markerspin),
-          onMapCreated: (GoogleMapController controller) {
-            completer.complete(controller);
-          },
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                height: 100,
+                child: GoogleMap(
+                  
+                  initialCameraPosition: cameraPosition,
+                  mapType: MapType.normal,
+                  markers: Set.of(markerslist),
+                  onMapCreated: (GoogleMapController controller) {
+                    completer.complete(controller);
+                  },
+                ),
+              ),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  L03CurrentLocation().callLocation(markerslist, completer);
+                  setState(() {});
+                },
+                child: Text("Current Location"))
+          ],
         ));
   }
 }
