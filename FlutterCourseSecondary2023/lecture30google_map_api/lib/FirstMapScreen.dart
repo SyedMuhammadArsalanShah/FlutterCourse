@@ -68,7 +68,7 @@ class _FirstMapScreenState extends State<FirstMapScreen> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  L03CurrentLocation().callLocation(markerslist, completer);
+                  L03CurrentLocation().callLocation(markerslist,completer);
                   setState(() {});
                 },
                 child: Text("Current Location"))
