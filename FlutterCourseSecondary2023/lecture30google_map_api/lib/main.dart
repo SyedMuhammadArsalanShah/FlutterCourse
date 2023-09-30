@@ -4,6 +4,9 @@ import 'package:lecture30google_map_api/FiveMapScreen.dart';
 // import 'package:lecture30google_map_api/ThirdMapScreen.dart';
 // import 'package:lecture30google_map_api/SecondMapScreen.dart';
 import 'package:lecture30google_map_api/FourthMapScreen.dart';
+import 'package:lecture30google_map_api/SevenMapScreen.dart';
+import 'package:lecture30google_map_api/SixMapScreen.dart';
+import 'package:lecture30google_map_api/WarishaAslam/MyMap.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +28,10 @@ class MyApp extends StatelessWidget {
       // home: const SecondMapScreen(),
       // home: const ThirdMapScreen(),
       // home: const FourthMapScreen(),
-      home: const FiveMapScreen(),
+      // home: const FiveMapScreen(),
+      // home: const SixMapScreen(),
+      // home: const SevenMapScreen(),
+      home: const MyMap(),
     );
   }
 }
