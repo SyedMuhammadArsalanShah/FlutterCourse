@@ -232,7 +232,7 @@ class _MyMapState extends State<MyMap> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 252, 243, 243),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Google Map ",
         ),
         centerTitle: true,

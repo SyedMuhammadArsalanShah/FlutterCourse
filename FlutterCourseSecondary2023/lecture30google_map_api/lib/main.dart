@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lecture30google_map_api/EightMapScreen.dart';
 import 'package:lecture30google_map_api/FiveMapScreen.dart';
 // import 'package:lecture30google_map_api/FirstMapScreen.dart';
 // import 'package:lecture30google_map_api/ThirdMapScreen.dart';
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
       // home: const FiveMapScreen(),
       // home: const SixMapScreen(),
       // home: const SevenMapScreen(),
-      home: const MyMap(),
+      // home: const MyMap(),
+      home: EightMapScreen(),
     );
   }
 }
