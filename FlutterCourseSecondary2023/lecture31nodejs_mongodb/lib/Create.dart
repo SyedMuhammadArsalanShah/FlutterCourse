@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lecture31nodejs_mongodb/services/Api.dart';
 
 import 'Home.dart';
 
@@ -10,6 +11,9 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
+  TextEditingController emailWA = TextEditingController();
+  TextEditingController passWA = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +29,7 @@ class _CreateState extends State<Create> {
               height: 35,
             ),
             TextField(
+              controller: emailWA,
               decoration: InputDecoration(
                 hintText: ('Email'),
               ),
@@ -33,6 +38,7 @@ class _CreateState extends State<Create> {
               height: 20,
             ),
             TextField(
+              controller: passWA,
               decoration: InputDecoration(
                 hintText: ('Password'),
                 suffixIcon: IconButton(
@@ -52,8 +58,15 @@ class _CreateState extends State<Create> {
                           color: Color.fromRGBO(5, 23, 128, 0.78),
                           fontSize: 15)),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+                    var data = {
+                      "email": emailWA.text.toString(),
+                      "pass": passWA.text.toString()
+                    };
+
+                    Api.addpost(data);
+
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => Home()));
                   },
                 ),
               ],
