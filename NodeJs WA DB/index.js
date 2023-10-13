@@ -35,7 +35,7 @@ app.listen(2000, () => {
 
 
 
-app.post("/api/add_user", (req, res) => {
+app.post("/api/add_infouser", (req, res) => {
 
     console.log("result ", req.body);
 
@@ -57,4 +57,25 @@ app.post("/api/add_user", (req, res) => {
         "message": "account successfully created",
         "userdata": uData
     });
+});
+
+
+
+
+app.get("/api/get_infouser", (req, res) => {
+
+
+    if (userdata.length > 0) {
+        res.status(200).send({
+            "statuscode": 200,
+            "userdata": userdata
+        });
+    } else {
+
+        res.status(200).send({
+            "statuscode": 200,
+            "userdata": []
+        });
+    }
+
 });

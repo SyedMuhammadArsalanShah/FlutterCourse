@@ -22,6 +22,8 @@ class _CreateState extends State<Create> {
         padding: EdgeInsets.fromLTRB(8, 100, 8, 0),
         child: Column(
           children: [
+
+           
             SizedBox(
               height: 35,
             ),
@@ -63,10 +65,10 @@ class _CreateState extends State<Create> {
                       "pass": passWA.text.toString()
                     };
 
-                    Api.addpost(data);
+                    Api.postuserapi(data);
 
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => Home()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
                   },
                 ),
               ],

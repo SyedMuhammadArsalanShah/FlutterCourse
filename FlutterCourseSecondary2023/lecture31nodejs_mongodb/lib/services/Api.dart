@@ -1,35 +1,40 @@
 import 'dart:convert';
 
-import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
+  late List userdata = [];
+  // static const baseurl = "http://192.168.18.11:2000/api/";
   static const baseurl = "http://192.168.2.109:2000/api/";
-
-  static addpost(Map pdata) async {
-    // var connectivityResult = await (Connectivity().checkConnectivity());
-    // if (connectivityResult == ConnectivityResult.wifi ||
-    //     connectivityResult == ConnectivityResult.mobile) {
-    //   var ipAddress = await Connectivity().getWifiIP();
-    //   print("Device IP address: $ipAddress");
-    // } else {
-    //   print("Device is not connected to a network.");
-    // }
-
-    print("my map data =>$pdata");
-    var url = Uri.parse("${baseurl}add_user");
-
+  static postuserapi(Map udata) async {
     try {
-      final response = await http.post(url, body: pdata);
+      var response =
+          await http.post(Uri.parse("${baseurl}add_infouser"), body: udata);
 
       if (response.statusCode == 200) {
-        Map data = jsonDecode(response.body.toString());
-        print("wa => ${data.toString()}");
+        Map data = jsonDecode(response.body);
+
+        print("WA 910=>${data.toString()}");
       } else {
-        print("wa =>Failed to get response ");
+        print("WA 910=> no response get ");
       }
     } catch (e) {
-      print("wa910" + e.toString());
+      print("smas=>" + e.toString());
+    }
+  }
+
+  getuserapi() async {
+    var response = await http.get(Uri.parse("${baseurl}get_userinfo"));
+    try {
+      if (response.statusCode == 200) {
+        Map data = jsonDecode(response.body);
+        userdata = data["userdata"];
+        print("My get response WA910 =>${userdata.toString()} ");
+      } else {
+        print("API failed: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Error fetching data: $e");
     }
   }
 }
