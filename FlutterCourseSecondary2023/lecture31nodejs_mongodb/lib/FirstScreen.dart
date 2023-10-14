@@ -24,7 +24,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Create()),
+                    MaterialPageRoute(builder: (context) => Create(null)),
                   );
                 },
                 child: Text('Create'),

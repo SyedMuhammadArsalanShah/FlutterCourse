@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lecture31nodejs_mongodb/Create.dart';
 import 'package:lecture31nodejs_mongodb/services/Api.dart';
 
 class Home extends StatefulWidget {
@@ -9,9 +10,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   Api userApi = Api();
   bool isLoading = true;
+  TextEditingController emailWA = TextEditingController();
+  TextEditingController passWA = TextEditingController();
+
   @override
   Future<void> fetchData() async {
     try {
@@ -26,9 +29,12 @@ class _HomeState extends State<Home> {
       });
     }
   }
+
   void initState() {
     // TODO: implement initState
+
     fetchData();
+
     super.initState();
   }
 
@@ -51,9 +57,90 @@ class _HomeState extends State<Home> {
                   subtitle: Text(
                     data["pass"],
                   ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                          onPressed: ()  {
+                            int id = data["id"];
+
+                            emailWA.text = data["email"];
+                            passWA.text = data["pass"];
+                            //This custom  method
+                            updateDialogBox(id, emailWA, passWA);
+
+                            // setState(() {});
+                          },
+                          icon: Icon(Icons.edit_note)),
+                      IconButton(
+                          onPressed: () async {
+                            var id = data["id"];
+
+                            //This method from api class
+                            await userApi.deleteuserapi(id);
+                            await fetchData();
+
+                            // setState(() {});
+                          },
+                          icon: Icon(Icons.delete_forever_rounded))
+                    ],
+                  ),
                 );
         },
       ),
+    );
+  }
+
+  void updateDialogBox(id, emailWA, passWA) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Update your task"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: emailWA,
+                decoration: InputDecoration(
+                  hintText: ('Email'),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: passWA,
+                decoration: InputDecoration(
+                  hintText: ('Password'),
+                  suffixIcon: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.remove_red_eye),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+                onPressed: () async {
+                  var data = {
+                    "email": emailWA.text.toString(),
+                    "pass": passWA.text.toString()
+                  };
+                  await userApi.updateuserapi(id, data);
+                  await fetchData();
+                  Navigator.of(context).pop();
+                },
+                child: Text("Update")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Cancel"))
+          ],
+        );
+      },
     );
   }
 }

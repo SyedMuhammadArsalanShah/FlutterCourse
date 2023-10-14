@@ -4,7 +4,8 @@ import 'package:lecture31nodejs_mongodb/services/Api.dart';
 import 'Home.dart';
 
 class Create extends StatefulWidget {
-  const Create({super.key});
+  int? id;
+  Create(this.id, {super.key});
 
   @override
   State<Create> createState() => _CreateState();
@@ -22,8 +23,6 @@ class _CreateState extends State<Create> {
         padding: EdgeInsets.fromLTRB(8, 100, 8, 0),
         child: Column(
           children: [
-
-           
             SizedBox(
               height: 35,
             ),

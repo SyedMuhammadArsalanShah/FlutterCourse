@@ -79,3 +79,30 @@ app.get("/api/get_infouser", (req, res) => {
     }
 
 });
+
+
+
+app.post("/api/update_infouser/:id", (req, res) => {
+    let id = req.params.id * 1;
+    let userdataToUpdate = userdata.find(p => p.id === id);
+    let index = userdata.indexOf(userdataToUpdate);
+    userdata[index] = req.body;
+    res.status(200).send({
+        "status": "success",
+        "message": " successfully updated",
+    })
+});
+
+
+
+app.post("/api/delete_infouser/:id", (req, res) => {
+    let id = req.params.id * 1;
+    let userdataToUpdate = userdata.find(p => p.id === id);
+    let index = userdata.indexOf(userdataToUpdate);
+    userdata.splice(index, 1);
+    res.status(200).send({
+        "status": "success",
+        "message": " successfully deleted",
+    })
+
+});
