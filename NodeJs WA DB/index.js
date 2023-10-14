@@ -81,7 +81,6 @@ app.get("/api/get_infouser", (req, res) => {
 });
 
 
-
 app.post("/api/update_infouser/:id", (req, res) => {
     let id = req.params.id * 1;
     let userdataToUpdate = userdata.find(p => p.id === id);
@@ -92,7 +91,6 @@ app.post("/api/update_infouser/:id", (req, res) => {
         "message": " successfully updated",
     })
 });
-
 
 
 app.post("/api/delete_infouser/:id", (req, res) => {
