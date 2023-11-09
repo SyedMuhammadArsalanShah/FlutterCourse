@@ -22,15 +22,15 @@ class _LectTwoProviderCounterState extends State<LectTwoProviderCounter> {
           children: [
             Text(DateTime.now().toString()),
              
-
-
-
             Consumer<CounterProvider>(builder: (context, value, child) {
              return  Text(value.count.toString());
             },),
             ElevatedButton(
                 onPressed: () {
                   provider.increment();
+
+
+                
                 },
                 child: Text("Press"))
           ],
